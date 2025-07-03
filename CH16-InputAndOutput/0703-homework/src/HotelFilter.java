@@ -13,7 +13,13 @@ public class HotelFilter {
 
       String line;
       while ((line = reader.readLine()) != null) {
-        if (line.contains(city)) {
+        // 原本錯誤：tokens[7] 是第8欄，實際城市在第7欄（index=6），已修正
+        // if (tokens.length > 1 && tokens[7].trim().equals(city)) {
+        //   writer.write(line);
+        //   writer.newLine();
+        // }
+        String[] tokens = line.split(",");
+        if (tokens.length > 6 && tokens[6].trim().equals(city)) {
           writer.write(line);
           writer.newLine();
         }
