@@ -21,12 +21,9 @@ public class HotelFilter {
 
 //   讀取完成後，列出符合過濾要求的數量
       writer.flush();
-      long count;
-      try (var lines = java.nio.file.Files.lines(java.nio.file.Paths.get(resultFileName))) {
-        count = lines.count();
-      }
-
+      long count = java.nio.file.Files.lines(java.nio.file.Paths.get(resultFileName)).count();
       System.out.println("符合 " + city + " 的飯店數量: " + count);
+
 
 //    讀取完成後，關閉資源
       System.out.println("完成讀取 " + hotelsFileName + " 檔案並寫入 " + resultFileName + " 檔案。");
