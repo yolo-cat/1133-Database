@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/001-Example/001-Example.iml" filepath="$PROJECT_DIR$/001-Example/001-Example.iml" />
-      <module fileurl="file://$PROJECT_DIR$/0702-CH16-InputAndOutput/0702-CH16-InputAndOutput.iml" filepath="$PROJECT_DIR$/0702-CH16-InputAndOutput/0702-CH16-InputAndOutput.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CH16-InputAndOutput/0702/0702.iml" filepath="$PROJECT_DIR$/CH16-InputAndOutput/0702/0702.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CH16-InputAndOutput/0703/0703.iml" filepath="$PROJECT_DIR$/CH16-InputAndOutput/0703/0703.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CH16-InputAndOutput/0703-2/0703-2.iml" filepath="$PROJECT_DIR$/CH16-InputAndOutput/0703-2/0703-2.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/1133-Database.iml" filepath="$PROJECT_DIR$/.idea/1133-Database.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CH16-InputAndOutput/CH16-InputAndOutput.iml" filepath="$PROJECT_DIR$/CH16-InputAndOutput/CH16-InputAndOutput.iml" />
     </modules>
   </component>
 </project>
