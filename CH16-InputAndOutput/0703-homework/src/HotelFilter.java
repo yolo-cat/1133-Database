@@ -47,4 +47,41 @@ public class HotelFilter {
         }
         return result;
     }
+
+    /**
+     * 取得所有欄位名稱。
+     * @return 欄位名稱陣列
+     */
+    public static String[] getFieldNames() {
+        return new String[]{"id", "name", "address", "phone"};
+    }
+
+    /**
+     * 根據指定欄位與關鍵字，對 Map 進行二次過濾。
+     * @param hotelMap 原始 Map
+     * @param field 欄位名稱
+     * @param keyword 關鍵字
+     * @return 過濾後的新 Map
+     */
+    public static Map<String, Hotel> filterByField(Map<String, Hotel> hotelMap, String field, String keyword) {
+        List<Hotel> filtered = new ArrayList<>();
+        for (Hotel hotel : hotelMap.values()) {
+            String value = "";
+            switch (field) {
+                case "id": value = hotel.getId(); break;
+                case "name": value = hotel.getName(); break;
+                case "address": value = hotel.getAddress(); break;
+                case "phone": value = hotel.getPhone(); break;
+            }
+            if (value.contains(keyword)) {
+                filtered.add(hotel);
+            }
+        }
+        filtered.sort(Comparator.comparing(Hotel::getId));
+        Map<String, Hotel> result = new LinkedHashMap<>();
+        for (Hotel hotel : filtered) {
+            result.put(hotel.getId(), hotel);
+        }
+        return result;
+    }
 }
