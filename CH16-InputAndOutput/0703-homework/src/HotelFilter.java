@@ -84,4 +84,23 @@ public class HotelFilter {
         }
         return result;
     }
+
+    /**
+     * 將符合條件的飯店資料輸出到指定 csv 檔案。
+     * @param hotelMap 要輸出的 Map
+     * @param outputCsvPath 輸出檔案路徑
+     */
+    public static void exportToCsv(Map<String, Hotel> hotelMap, String outputCsvPath) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(outputCsvPath))) {
+            // 輸出標題
+            bw.write("id,name,address,phone");
+            bw.newLine();
+            for (Hotel hotel : hotelMap.values()) {
+                bw.write(hotel.toString());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
