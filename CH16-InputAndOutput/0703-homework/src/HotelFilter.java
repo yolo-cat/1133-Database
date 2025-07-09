@@ -1,48 +1,26 @@
+import java.io.*;
+import java.util.*;
+
 public class HotelFilter {
-
-  //  傳入 Hotels.csv 檔名
-  //  傳入縣市名稱
-  //  傳入寫出的 csv 檔名
-
-  public void generateHotelInCityFile(String hotelsFileName, String city, String resultFileName) {
-    // 讀取 hotels.csv 檔案
-    // 過濾出符合縣市名稱的飯店資料
-    // 將過濾後的資料寫入 resultFileName 檔案
-    try (var reader = new java.io.BufferedReader(new java.io.FileReader(hotelsFileName));
-        var writer = new java.io.BufferedWriter(new java.io.FileWriter(resultFileName))) {
-
-      String line;
-      while ((line = reader.readLine()) != null) {
-        // 原本錯誤：tokens[7] 是第8欄，實際城市在第7欄（index=6），已修正
-        // if (tokens.length > 1 && tokens[7].trim().equals(city)) {
-        //   writer.write(line);
-        //   writer.newLine();
-        // }
-        String[] tokens = line.split(",");
-        if (tokens.length > 6 && tokens[6].trim().equals(city)) {
-          writer.write(line);
-          writer.newLine();
+    public static Map<String, Hotel> loadHotels(String csvFilePath) {
+        Map<String, Hotel> hotelMap = new HashMap<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+            String line = br.readLine(); // 讀取標題
+            while ((line = br.readLine()) != null) {
+                String[] tokens = line.split(",");
+                if (tokens.length >= 4) {
+                    String id = tokens[0];
+                    String name = tokens[1];
+                    String address = tokens[2];
+                    String phone = tokens[3];
+                    Hotel hotel = new Hotel(id, name, address, phone);
+                    hotelMap.put(id, hotel);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-      }
-
-//   讀取完成後，列出符合過濾要求的數量
-      writer.flush();
-      long count = java.nio.file.Files.lines(java.nio.file.Paths.get(resultFileName)).count();
-      System.out.println("符合 " + city + " 的飯店數量: " + count);
-
-
-//    讀取完成後，關閉資源
-      System.out.println("完成讀取 " + hotelsFileName + " 檔案並寫入 " + resultFileName + " 檔案。");
-
-    } catch (java.io.FileNotFoundException e) {
-      System.out.println("檔案未找到: " + e.getMessage());
-      e.printStackTrace();
-    } catch (java.io.IOException e) {
-      System.out.println("讀取或寫入檔案時發生錯誤: " + e.getMessage());
-      e.printStackTrace();
-    } catch (Exception e) {
-      System.out.println("發生未知錯誤: " + e.getMessage());
-      e.printStackTrace();
+        return hotelMap;
     }
-  }
 }
+
